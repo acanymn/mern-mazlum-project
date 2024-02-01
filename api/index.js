@@ -4,6 +4,7 @@ import env from 'dotenv';
 import MainTableRouter from './routes/maintable.route.js'
 
 env.config();
+const app = express();
 
 mongoose.connect(process.env.DB_URL)
 .then(() => {
@@ -12,7 +13,7 @@ mongoose.connect(process.env.DB_URL)
     console.log(error);
 });
 
-const app = express();
+app.use(express.json());
 
 app.listen(3000, () => {
     console.log(`Server running on port 3000`);

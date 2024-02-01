@@ -3,6 +3,6 @@ import { mainTableController } from "../controllers/maintable.controller.js"
 
 const router = express.Router();
 
-router.get('/mainTable', mainTableController);
+router.post('/mainTable', mainTableController);
 
 export default router;
