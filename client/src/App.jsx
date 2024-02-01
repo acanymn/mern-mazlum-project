@@ -1,8 +1,18 @@
 import React from 'react'
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { Sign } from './pages/Sign';
+import { Dashboard } from './pages/Dashboard';
+//rfce
 
-const App = () => {
+function App() {
   return (
-    <div className='text-3xl text-red-500'>App</div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Sign />}/>
+        <Route path='/sign' element={<Sign />}/>
+        <Route path='/dashboard' element={<Dashboard />}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
