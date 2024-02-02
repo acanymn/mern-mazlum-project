@@ -3,7 +3,7 @@ import React from "react"
 function Footer() {
     const year = new Date().getFullYear();
   return (
-    <div className="flex justify-center align-bottom">
+    <div className="flex justify-center align-bottom mb-5">
         <p style={{color:"#C7C8CC"}}>Copyright © {year}</p>
     </div>
   )
