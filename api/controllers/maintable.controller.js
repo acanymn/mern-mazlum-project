@@ -1,8 +1,9 @@
 import env from "dotenv";
 import mainTable from "../models/maintable.model.js";
+import {errorHandler} from '../utils/error.js'
 env.config();
 
-export const mainTableController = async (req,res) => {
+export const mainTableController = async (req,res, next) => {
      try {
 
           if(req.query.apiKey === process.env.API_KEY){
@@ -12,7 +13,7 @@ export const mainTableController = async (req,res) => {
                const date_table = new Date();
 
                if(!id_table || !name_table || !date_table || id_table === '' || name_table === '' || date_table === ''){
-                    return res.status(400).json({message:"All fields are required."});
+                    next(errorHandler(400, 'All fields are required!'));
                }else{
                     
                    try {
@@ -24,19 +25,18 @@ export const mainTableController = async (req,res) => {
      
                     await newMainTable.save();
                     res.json({message:"Table created successfully!"});
+
                } catch (error) {
-                    res.status(500).json({message:error.message})
+                    next(error);
                }
           }
 
-
           }else{
-               res.json({error: 'Non Authorized API User!'});
+               next(errorHandler(400, "Authentication error!"));
           }
 
      } catch (error) {
-          res.json({error:'An error occured!'});
-          console.log(error);
+          next(error);
      }
 
 };
