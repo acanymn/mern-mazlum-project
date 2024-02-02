@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import env from 'dotenv';
 import MainTableRouter from './routes/maintable.route.js'
+import AuthPassword from './routes/authpassword.route.js'
 
 env.config();
 const app = express();
@@ -20,6 +21,7 @@ app.listen(3000, () => {
 });
 
 app.use('/api', MainTableRouter);
+app.use('/api', AuthPassword);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
